@@ -10,10 +10,11 @@ def create_table():
         CREATE TABLE IF NOT EXISTS students (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             name TEXT NOT NULL,
-            age INTEGER,
-            course TEXT,
-            email TEXT
+            age INTEGER NOT NULL,
+            course TEXT NOT NULL,
+            email TEXT NOT NULL UNIQUE
         )
     """)
     conn.commit()
     conn.close()
+
