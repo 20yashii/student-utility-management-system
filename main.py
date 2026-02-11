@@ -13,19 +13,17 @@ def menu():
     print("6. Exit")
 
 
-# ----------- VALIDATION FUNCTIONS -----------
-
 def get_valid_age():
     while True:
         age_input = input("Age: ")
         try:
             age = int(age_input)
             if age <= 0:
-                print("❌ Age must be a positive number.")
+                print("Age must be a positive number.")
             else:
                 return age
         except ValueError:
-            print("❌ Please enter a valid number for age.")
+            print("Please enter a valid number for age.")
 
 
 def get_valid_email():
@@ -35,7 +33,7 @@ def get_valid_email():
         if re.match(pattern, email):
             return email
         else:
-            print("❌ Invalid email format. Try again.")
+            print("Invalid email format. Try again.")
 
 
 create_table()
@@ -46,9 +44,9 @@ while True:
 
     if choice == "1":
         name = input("Name: ")
-        age = get_valid_age()  # ✅ validated age
+        age = get_valid_age()  # validated age
         course = input("Course: ")
-        email = get_valid_email()  # ✅ validated email
+        email = get_valid_email()  # validated email
 
         add_student(name, age, course, email)
         print("Student added successfully!")
@@ -65,9 +63,9 @@ while True:
     elif choice == "4":
         sid = int(input("Enter Student ID: "))
         name = input("New Name: ")
-        age = get_valid_age()  # ✅ validated age
+        age = get_valid_age()  # validated age
         course = input("New Course: ")
-        email = get_valid_email()  # ✅ validated email
+        email = get_valid_email()  #  validated email
 
         update_student(sid, name, age, course, email)
         print("Student updated!")
@@ -83,5 +81,6 @@ while True:
 
     else:
         print("Invalid choice!")
+
 
 
