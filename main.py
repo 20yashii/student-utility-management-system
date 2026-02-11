@@ -67,9 +67,32 @@ Email      : {s[4]}
 """)
         else:
             print("No students found.")
-
-    elif choice == "3":
+        elif choice == "3":
+    try:
         sid = int(input("Enter Student ID: "))
+    except ValueError:
+        print("Invalid ID! Please enter a numeric value.")
+        continue
+
+    try:
+        student = search_student(sid)
+
+        if student:
+            print(f"""
+Student ID : {student[0]}
+Name       : {student[1]}
+Age        : {student[2]}
+Course     : {student[3]}
+Email      : {student[4]}
+------------------------------
+""")
+        else:
+            print("Student not found.")
+
+    except Exception as e:
+        print("Error while searching student:", e)
+
+
 
 
 
