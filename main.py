@@ -1,5 +1,7 @@
 from database import create_table
 from student import *
+import re   # for email validation
+
 
 def menu():
     print("\nStudent Utility Management System")
@@ -10,6 +12,32 @@ def menu():
     print("5. Delete Student")
     print("6. Exit")
 
+
+# ----------- VALIDATION FUNCTIONS -----------
+
+def get_valid_age():
+    while True:
+        age_input = input("Age: ")
+        try:
+            age = int(age_input)
+            if age <= 0:
+                print("❌ Age must be a positive number.")
+            else:
+                return age
+        except ValueError:
+            print("❌ Please enter a valid number for age.")
+
+
+def get_valid_email():
+    pattern = r'^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$'
+    while True:
+        email = input("Email: ")
+        if re.match(pattern, email):
+            return email
+        else:
+            print("❌ Invalid email format. Try again.")
+
+
 create_table()
 
 while True:
@@ -18,9 +46,10 @@ while True:
 
     if choice == "1":
         name = input("Name: ")
-        age = int(input("Age: "))
+        age = get_valid_age()  # ✅ validated age
         course = input("Course: ")
-        email = input("Email: ")
+        email = get_valid_email()  # ✅ validated email
+
         add_student(name, age, course, email)
         print("Student added successfully!")
 
@@ -36,9 +65,10 @@ while True:
     elif choice == "4":
         sid = int(input("Enter Student ID: "))
         name = input("New Name: ")
-        age = int(input("New Age: "))
+        age = get_valid_age()  # ✅ validated age
         course = input("New Course: ")
-        email = input("New Email: ")
+        email = get_valid_email()  # ✅ validated email
+
         update_student(sid, name, age, course, email)
         print("Student updated!")
 
@@ -53,3 +83,5 @@ while True:
 
     else:
         print("Invalid choice!")
+
+
