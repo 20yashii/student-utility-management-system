@@ -44,43 +44,34 @@ while True:
 
     if choice == "1":
         name = input("Name: ")
-        age = get_valid_age()  # validated age
+        age = get_valid_age()
         course = input("Course: ")
-        email = get_valid_email()  # validated email
+        email = get_valid_email()
 
         add_student(name, age, course, email)
         print("Student added successfully!")
 
     elif choice == "2":
         students = view_students()
-        for s in students:
-            print(s)
+
+        if students:
+            print("\n===== Student List =====")
+            for s in students:
+                print(f"""
+Student ID : {s[0]}
+Name       : {s[1]}
+Age        : {s[2]}
+Course     : {s[3]}
+Email      : {s[4]}
+------------------------------
+""")
+        else:
+            print("No students found.")
 
     elif choice == "3":
         sid = int(input("Enter Student ID: "))
-        print(search_student(sid))
 
-    elif choice == "4":
-        sid = int(input("Enter Student ID: "))
-        name = input("New Name: ")
-        age = get_valid_age()  # validated age
-        course = input("New Course: ")
-        email = get_valid_email()  #  validated email
 
-        update_student(sid, name, age, course, email)
-        print("Student updated!")
-
-    elif choice == "5":
-        sid = int(input("Enter Student ID: "))
-        delete_student(sid)
-        print("Student deleted!")
-
-    elif choice == "6":
-        print("Goodbye!")
-        break
-
-    else:
-        print("Invalid choice!")
 
 
 
